@@ -1,0 +1,362 @@
+/* ==========================================================================
+   CSS: BIOMECHANICAL / MINIMALIST MONOCHROMATIC TECH
+   Colors: Deep Pitch Black (#000000), Matrix Green (#00ff00), Crisp White (#ffffff), Deep Charcoal (#111111)
+   Fonts: Syne (Headings), Share Tech Mono (Body/Data)
+   ========================================================================== */
+
+:root {
+    --bg-color: #000000;
+    --accent-green: #00ff00;
+    --text-white: #ffffff;
+    --border-dark: #111111;
+    --font-head: 'Syne', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none; /* Custom cursor takes over */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-white);
+    font-family: var(--font-mono);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   INTERACTIVE ELEMENTS & MICRO-INTERACTIONS
+   -------------------------------------------------------------------------- */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background-color: var(--accent-green);
+    z-index: 9999;
+    box-shadow: 0 0 10px var(--accent-green);
+    transition: width 0.1s ease-out;
+}
+
+#cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.08) 0%, rgba(0, 0, 0, 0) 60%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9998;
+    mix-blend-mode: screen;
+}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY & UTILITIES
+   -------------------------------------------------------------------------- */
+h1, h2, h3 {
+    font-family: var(--font-head);
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.massive-type {
+    font-size: clamp(4rem, 10vw, 12rem);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    color: var(--text-white);
+}
+
+.sub-type {
+    font-size: 1.2rem;
+    color: var(--accent-green);
+    margin-top: 2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: var(--text-white);
+    border-bottom: 1px solid var(--border-dark);
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+    display: inline-block;
+}
+
+.terminal-text {
+    font-size: 1rem;
+    color: var(--accent-green);
+    margin-bottom: 0.5rem;
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% { opacity: 0; }
+}
+
+.warning-text {
+    color: #ff3333;
+    border-left: 3px solid #ff3333;
+    padding-left: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   LAYOUT STRUCTURE: BRUTALIST & ASYMMETRIC
+   -------------------------------------------------------------------------- */
+.grid-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.asymmetric-margin {
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+    margin-left: 10vw;
+}
+
+.brutalist-border {
+    border: 2px solid var(--border-dark);
+    background: rgba(17, 17, 17, 0.3);
+    position: relative;
+}
+
+.brutalist-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid var(--accent-green);
+    border-left: 2px solid var(--accent-green);
+}
+
+.brutalist-border::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 20px;
+    height: 20px;
+    border-bottom: 2px solid var(--accent-green);
+    border-right: 2px solid var(--accent-green);
+}
+
+/* --- Hero Section --- */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+    min-height: 80vh;
+    align-items: center;
+    margin-top: 5vh;
+}
+
+.hero-right {
+    padding: 3rem;
+    height: fit-content;
+}
+
+/* --- Neural Sync Interface (Tabs) --- */
+.tab-container {
+    padding: 2rem;
+}
+
+.tab-headers {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border-dark);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: transparent;
+    border: 1px solid var(--border-dark);
+    color: var(--text-white);
+    font-family: var(--font-mono);
+    padding: 0.8rem 1.5rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+}
+
+.tab-btn.active {
+    background: var(--accent-green);
+    color: var(--bg-color);
+    border-color: var(--accent-green);
+    font-weight: bold;
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.tab-pane h3 {
+    margin-bottom: 1rem;
+    color: var(--text-white);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Biometric Readout Blueprint --- */
+.svg-container {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+svg {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+
+.hotspot {
+    transition: fill 0.3s ease, r 0.3s ease;
+}
+
+.hotspot:hover {
+    fill: rgba(0, 255, 0, 0.3);
+}
+
+/* --- Frictionless Roadmap (Vertical Timeline) --- */
+.timeline {
+    border-left: 2px solid var(--border-dark);
+    padding-left: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.timeline-item {
+    padding: 2rem;
+    width: 80%;
+    opacity: 0.3; /* Default state before scroll reveal */
+    transform: translateX(-20px);
+    transition: all 0.6s ease;
+}
+
+.timeline-item.revealed {
+    opacity: 1;
+    transform: translateX(0);
+    border-color: rgba(0, 255, 0, 0.4);
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -3.5rem; /* Pushes marker to the timeline border */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    background: var(--bg-color);
+    border: 2px solid var(--accent-green);
+    border-radius: 50%;
+    transition: background 0.4s ease;
+}
+
+.timeline-item.revealed .timeline-marker {
+    background: var(--accent-green);
+    box-shadow: 0 0 15px var(--accent-green);
+}
+
+.timeline-item h3 {
+    color: var(--accent-green);
+    margin-bottom: 1rem;
+}
+
+/* --- Contact / Footer --- */
+.system-footer {
+    margin: 8rem auto 2rem auto;
+    max-width: 1400px;
+    padding: 4rem 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+}
+
+.footer-title {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-white);
+    border-bottom: 1px solid var(--border-dark);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit-btn {
+    background: transparent;
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    padding: 1.5rem 3rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--accent-green);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+    z-index: -1;
+}
+
+.submit-btn:hover {
+    color: var(--bg-color);
+}
+
+.submit-btn:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .split-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .asymmetric-margin { margin-left: 0; }
+    .timeline { padding-left: 1.5rem; }
+    .timeline-item { width: 100%; }
+    .timeline-marker { left: -2rem; }
+}
